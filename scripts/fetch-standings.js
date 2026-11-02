@@ -88,12 +88,15 @@ async function run() {
       'a:has-text("Download")',
       'button:has-text("Export")',
       'a:has-text("Export")',
+      'button:has-text("CSV")',
+      'a:has-text("CSV")',
       '[aria-label*="download" i]',
       '[title*="download" i]',
       'a[href*="download" i]',
       'a[href*=".csv" i]',
       'button[class*="download" i]',
       'a[class*="download" i]',
+      '[data-testid*="download" i]',
       '.ranking button',
       '.rankings button'
     ];
@@ -102,7 +105,28 @@ async function run() {
     for (const sel of downloadSelectors) {
       const btn = page.locator(sel).first();
       if (await btn.isVisible({ timeout: 1500 }).catch(() => false)) {
-        console.log(`Found download button with selector: ${sel}. Clicking to download...`);
+        console.log(`Found download candidate with selector: ${sel}`);
+        
+        // Check if it has a direct href download link
+        const href = await btn.getAttribute('href').catch(() => null);
+        if (href && (href.includes('.csv') || href.includes('download') || href.includes('export'))) {
+          try {
+            const absoluteUrl = href.startsWith('http') ? href : new URL(href, page.url()).toString();
+            console.log(`Detected direct CSV link: ${absoluteUrl}. Fetching directly...`);
+            const response = await context.request.get(absoluteUrl);
+            if (response.ok()) {
+              const csvBuffer = await response.body();
+              fs.writeFileSync(OUTPUT_FILE, csvBuffer);
+              console.log(`Successfully fetched CSV to ${OUTPUT_FILE}`);
+              downloaded = true;
+              break;
+            }
+          } catch (fetchErr) {
+            console.log('Direct link fetch failed, proceeding to click:', fetchErr.message);
+          }
+        }
+
+        console.log(`Clicking ${sel} to trigger download...`);
         try {
           const [download] = await Promise.all([
             page.waitForEvent('download', { timeout: 15000 }),
@@ -116,7 +140,7 @@ async function run() {
             break;
           }
         } catch (dlErr) {
-          console.log(`Download event failed for ${sel}:`, dlErr.message);
+          console.log(`Download event timed out for ${sel}:`, dlErr.message);
         }
       }
     }
@@ -126,7 +150,19 @@ async function run() {
       console.log('Download button not triggered. Falling back to table extraction...');
       await page.waitForSelector('table, [role="table"], tbody tr', { timeout: 10000 }).catch(() => {});
 
-      const rows = await page.locator('table tr, .table tr, [role="row"]').all();
+      let rows = await page.locator('table tr, .table tr, [role="row"]').all();
+      
+      // If no rows found on main frame, check any nested frames
+      if (rows.length === 0) {
+        for (const frame of page.frames()) {
+          const frameRows = await frame.locator('table tr, .table tr, [role="row"]').all();
+          if (frameRows.length > rows.length) {
+            rows = frameRows;
+            console.log(`Found ${rows.length} rows in subframe: ${frame.url()}`);
+          }
+        }
+      }
+
       console.log(`Found ${rows.length} table rows on page.`);
       const csvLines = ['Rank,Player,Portfolio Value,Overall Return'];
 
