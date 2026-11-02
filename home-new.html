@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FMA - Financial Management Association</title>
+  <meta name="description" content="Building the Next Generation of Financial Leaders. A student-run finance club at the University of Oregon.">
+  <meta property="og:title" content="FMA - Financial Management Association">
+  <meta property="og:description" content="Building the Next Generation of Financial Leaders at the University of Oregon.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="./FMA.logo.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=PT+Serif:ital,wght@0,400;0,700;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-shell">
+      <nav class="nav">
+        <a href="./home-new.html" class="brand">FMA</a>
+        <button type="button" id="menu-toggle" class="menu-toggle" aria-label="Open navigation" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <div id="nav-links" class="nav-links">
+          <a href="#about">About</a>
+          <a href="#what-we-offer">What We Offer</a>
+          <a href="#benefits">Benefits</a>
+          <a href="./members.html">Members</a>
+          <a href="./contact.html">Contact</a>
+          <a href="./contact.html" class="btn btn-primary">Join the Club</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero section-surface">
+      <div class="hero-media">
+        <video class="hero-video" autoplay muted loop playsinline poster="./eugene.jpg">
+          <source src="./hero-loop.webm" type="video/webm">
+          <source src="./hero-loop.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay" aria-hidden="true"></div>
+      </div>
+      <div class="site-shell hero-content reveal">
+        <img src="./FMA.logo.jpg" alt="Financial Management Association logo" class="hero-logo" width="560">
+        <h1>Financial Management Association</h1>
+        <p class="tagline">"Building the Next Generation of Financial Leaders"</p>
+        <p class="lede">A student-run finance club at the University of Oregon - now in our second year and growing fast.</p>
+        <div class="row-actions">
+          <a class="btn btn-outline" href="./contact.html">Join the Club</a>
+          <a class="btn btn-outline" href="#about">Learn More</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="mag7" class="section-surface reveal">
+      <div class="site-shell">
+        <div class="section-head">
+          <h2>Market Pulse: The Magnificent 7</h2>
+          <p>Our members track the market's most influential stocks every week. Stay sharp - this is what we're watching.</p>
+        </div>
+        <div class="tv-widget tradingview-widget-container space-bot"
+          data-tv-src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js"
+          data-tv-config='{"symbols":[{"proName":"NASDAQ:AAPL","title":"Apple"},{"proName":"NASDAQ:MSFT","title":"Microsoft"},{"proName":"NASDAQ:GOOGL","title":"Google"},{"proName":"NASDAQ:AMZN","title":"Amazon"},{"proName":"NASDAQ:NVDA","title":"NVIDIA"},{"proName":"NASDAQ:META","title":"Meta"},{"proName":"NASDAQ:TSLA","title":"Tesla"}],"showSymbolLogo":true,"isTransparent":true,"displayMode":"adaptive","colorTheme":"light","locale":"en"}'>
+        </div>
+        <div class="widget-grid" id="mag7-charts">
+          <div class="tv-widget tradingview-widget-container" data-tv-src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" data-tv-config='{"symbol":"NASDAQ:AAPL","width":"100%","height":"220","locale":"en","dateRange":"1D","colorTheme":"light","isTransparent":true,"autosize":true,"noTimeScale":true}'></div>
+          <div class="tv-widget tradingview-widget-container" data-tv-src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" data-tv-config='{"symbol":"NASDAQ:MSFT","width":"100%","height":"220","locale":"en","dateRange":"1D","colorTheme":"light","isTransparent":true,"autosize":true,"noTimeScale":true}'></div>
+          <div class="tv-widget tradingview-widget-container" data-tv-src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" data-tv-config='{"symbol":"NASDAQ:GOOGL","width":"100%","height":"220","locale":"en","dateRange":"1D","colorTheme":"light","isTransparent":true,"autosize":true,"noTimeScale":true}'></div>
+          <div class="tv-widget tradingview-widget-container" data-tv-src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" data-tv-config='{"symbol":"NASDAQ:AMZN","width":"100%","height":"220","locale":"en","dateRange":"1D","colorTheme":"light","isTransparent":true,"autosize":true,"noTimeScale":true}'></div>
+          <div class="tv-widget tradingview-widget-container" data-tv-src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" data-tv-config='{"symbol":"NASDAQ:NVDA","width":"100%","height":"220","locale":"en","dateRange":"1D","colorTheme":"light","isTransparent":true,"autosize":true,"noTimeScale":true}'></div>
+          <div class="tv-widget tradingview-widget-container" data-tv-src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" data-tv-config='{"symbol":"NASDAQ:META","width":"100%","height":"220","locale":"en","dateRange":"1D","colorTheme":"light","isTransparent":true,"autosize":true,"noTimeScale":true}'></div>
+          <div class="tv-widget tradingview-widget-container" data-tv-src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" data-tv-config='{"symbol":"NASDAQ:TSLA","width":"100%","height":"220","locale":"en","dateRange":"1D","colorTheme":"light","isTransparent":true,"autosize":true,"noTimeScale":true}'></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="market-indexes" class="section-surface reveal">
+      <div class="site-shell">
+        <div class="section-head">
+          <h2>Broad Market Overview</h2>
+          <p class="pill">TODAY</p>
+          <p>The benchmarks that define market direction. Trend lines reflect today's intraday performance.</p>
+        </div>
+        <div class="widget-grid">
+          <div class="tv-widget tradingview-widget-container" data-tv-src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" data-tv-config='{"symbol":"FOREXCOM:SPXUSD","width":"100%","height":"220","locale":"en","dateRange":"1D","colorTheme":"light","isTransparent":true,"autosize":true,"noTimeScale":true}'></div>
+          <div class="tv-widget tradingview-widget-container" data-tv-src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" data-tv-config='{"symbol":"FOREXCOM:DJI","width":"100%","height":"220","locale":"en","dateRange":"1D","colorTheme":"light","isTransparent":true,"autosize":true,"noTimeScale":true}'></div>
+          <div class="tv-widget tradingview-widget-container" data-tv-src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" data-tv-config='{"symbol":"NASDAQ:QQQ","width":"100%","height":"220","locale":"en","dateRange":"1D","colorTheme":"light","isTransparent":true,"autosize":true,"noTimeScale":true}'></div>
+          <div class="tv-widget tradingview-widget-container" data-tv-src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" data-tv-config='{"symbol":"AMEX:IWM","width":"100%","height":"220","locale":"en","dateRange":"1D","colorTheme":"light","isTransparent":true,"autosize":true,"noTimeScale":true}'></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section-surface reveal">
+      <div class="site-shell">
+        <div class="section-head">
+          <h2>Who We Are</h2>
+        </div>
+        <div class="card-grid three">
+          <article class="card">
+            <h3>Bridge the Gap</h3>
+            <p>We connect classroom finance theory with real-world practice, empowering students with the practical skills needed for a competitive industry.</p>
+          </article>
+          <article class="card">
+            <h3>Active Markets</h3>
+            <p>With 25+ members, we analyze markets and investing trends weekly, creating a hub for students passionate about financial analysis.</p>
+          </article>
+          <article class="card">
+            <h3>Industry Gateway</h3>
+            <p>Whether you're in Finance or Economics, FMA provides hands-on learning and the connections to launch a successful career.</p>
+          </article>
+        </div>
+        <article class="callout">
+          <h3>Join Us Biweekly</h3>
+          <p><strong>When:</strong> Every other Tuesday, 6:00 – 7:00 PM</p>
+          <p><strong>Where:</strong> Lillis 262, Lillis Business Complex</p>
+          <p><strong>Who:</strong> Open to all students - no finance background required!</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-contrast reveal">
+      <div class="site-shell split">
+        <div>
+          <h2>Built by Students, for Students</h2>
+          <p>Our mission is simple: empower University of Oregon students with the knowledge, skills, and network they need to succeed in finance. From weekly presentations on SaaS and AI stocks to site visits at companies like Tektronix, we're committed to making finance education accessible, engaging, and career-focused. We believe the best way to learn is by doing - analyzing real companies, meeting industry professionals, and thinking critically about global markets.</p>
+        </div>
+        <figure>
+          <img src="./Tektronix%20site%20visit.jpg" alt="FMA members at our Tektronix corporate site visit" loading="lazy">
+          <figcaption>FMA members at our Tektronix corporate site visit</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="what-we-offer" class="section-surface reveal">
+      <div class="site-shell">
+        <div class="section-head">
+          <h2>What We Do</h2>
+          <p>Every week brings something new.</p>
+        </div>
+        <div class="card-grid three">
+          <article class="card">
+            <h3>Guest Speakers</h3>
+            <p>Learn directly from industry professionals. We've hosted speakers from Oregon Community Credit Union, Stifel, and Lincoln Financial Group who share real insights about careers in finance.</p>
+          </article>
+          <article class="card">
+            <h3>Member Presentations</h3>
+            <p>Our members dive deep into topics like SaaS, AI stocks, energy, defense, healthcare, consumer discretionary, IPO outlooks, global economics, and emerging regulations.</p>
+          </article>
+          <article class="card">
+            <h3>Site Visits</h3>
+            <p>Go beyond the classroom. We've visited companies like Tektronix in Beaverton, Oregon, giving members firsthand experience of how finance operates in the real world.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-surface reveal">
+      <div class="site-shell">
+        <div class="section-head">
+          <p class="kicker">Past Speakers &amp; Partners</p>
+        </div>
+        <div class="logo-row">
+          <img src="./OCCU_Logo_w-_Tagline.png" alt="Oregon Community Credit Union" loading="lazy">
+          <img src="./SF_BIG.svg" alt="Stifel" loading="lazy">
+          <img src="./Lincoln-Financial-Group-Symbol.png" alt="Lincoln Financial Group" loading="lazy">
+          <img src="./Tektronix_logo_(2016).svg.png" alt="Tektronix" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <section id="benefits" class="section-surface reveal">
+      <div class="site-shell">
+        <div class="section-head">
+          <h2>Why Join FMA?</h2>
+        </div>
+        <div class="card-grid three">
+          <article class="card alt">
+            <h3>Real Market Knowledge</h3>
+            <p>Learn how to analyze stocks, understand market trends, and think like an investor through weekly presentations and discussions.</p>
+          </article>
+          <article class="card">
+            <h3>Industry Connections</h3>
+            <p>Network with finance professionals from top firms and credit unions who can open doors to internships and careers.</p>
+          </article>
+          <article class="card alt">
+            <h3>Resume-Ready Skills</h3>
+            <p>Build practical finance skills that stand out on resumes and in interviews - from financial modeling to sector analysis.</p>
+          </article>
+          <article class="card">
+            <h3>Real-World Site Visits</h3>
+            <p>See finance in action with exclusive visits to companies like Tektronix, bridging theory and practice.</p>
+          </article>
+          <article class="card alt">
+            <h3>Leadership Opportunities</h3>
+            <p>Take on leadership roles, organize events, and develop professional skills that extend far beyond finance.</p>
+          </article>
+          <article class="card">
+            <h3>Global &amp; Macro Thinking</h3>
+            <p>Explore emerging regulations, global economics, and macro trends shaping the future of markets.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-surface reveal">
+      <div class="site-shell">
+        <div class="section-head">
+          <h2>Hear From Our Members</h2>
+          <p>What joining FMA has meant to them.</p>
+        </div>
+        <div class="card-grid three">
+          <article class="quote">
+            <p>I came in knowing almost nothing about markets. Within a few weeks, I was following earnings reports and actually understanding what moved stock prices. FMA gave me a real edge heading into internship interviews.</p>
+            <span>Madox Nicola</span>
+          </article>
+          <article class="quote">
+            <p>The guest speakers are what set FMA apart. Hearing directly from professionals at firms like Stifel and OCCU made finance feel tangible instead of theoretical. I've built connections I never would have found in a classroom.</p>
+            <span>Miles Rasmussen</span>
+          </article>
+          <article class="quote">
+            <p>FMA is the reason I feel confident talking about sectors, valuations, and macro trends. The weekly presentations keep you sharp, and the community is full of people who genuinely want to learn and help each other grow.</p>
+            <span>Avi Shapero</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="ticker-wrap" aria-label="Topic highlights">
+      <div class="ticker">
+        <span>AI STOCKS</span><span>ENERGY</span><span>DEFENSE</span><span>HEALTHCARE</span><span>CONSUMER DISCRETIONARY</span><span>GLOBAL ECONOMICS</span><span>IPO OUTLOOKS</span><span>EMERGING REGULATIONS</span><span>SAAS</span>
+        <span>AI STOCKS</span><span>ENERGY</span><span>DEFENSE</span><span>HEALTHCARE</span><span>CONSUMER DISCRETIONARY</span><span>GLOBAL ECONOMICS</span><span>IPO OUTLOOKS</span><span>EMERGING REGULATIONS</span><span>SAAS</span>
+      </div>
+    </section>
+
+    <section class="section-surface reveal">
+      <div class="site-shell split">
+        <div>
+          <h2>Meet the Team</h2>
+          <p>View current leadership and upcoming Fall 2026 executive members.</p>
+          <a href="./members.html" class="btn btn-primary">View Members</a>
+        </div>
+        <img src="./James%20Lawrence.jpeg" class="promo-img" alt="James Lawrence, FMA President" loading="lazy" width="600" height="600">
+      </div>
+    </section>
+
+    <section class="section-contrast reveal">
+      <div class="site-shell cta-center">
+        <h2>Stay in the Loop</h2>
+        <p>Get weekly updates on our meetings, market insights, and exclusive opportunities.</p>
+        <form id="newsletter-form" class="newsletter-form">
+          <input type="email" id="newsletter-email" name="email" placeholder="Enter your email address" autocomplete="email" required>
+          <button type="submit" id="newsletter-submit" class="btn btn-outline">Subscribe</button>
+        </form>
+        <p id="newsletter-status" class="status" aria-live="polite"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-shell footer-grid">
+      <div>
+        <h3>FMA</h3>
+        <p>Building the Next Generation of Financial Leaders</p>
+        <p>Lillis Business Complex<br>955 E 13th Ave, Eugene, OR 97403</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <a href="#about">About</a>
+        <a href="#what-we-offer">What We Offer</a>
+        <a href="#benefits">Benefits</a>
+        <a href="./members.html">Members</a>
+        <a href="./contact.html">Contact</a>
+      </div>
+      <div>
+        <h4>Connect With Us</h4>
+        <a href="https://instagram.com/Oregon_FMA" target="_blank" rel="noreferrer">@Oregon_FMA</a>
+        <a href="mailto:uofma@uoregon.edu">Email</a>
+      </div>
+    </div>
+    <p class="copyright">&copy; 2026 Financial Management Association at University of Oregon. All rights reserved.</p>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>

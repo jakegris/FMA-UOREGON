@@ -1,0 +1,12 @@
+{
+  "name": "fma-uoregon",
+  "version": "1.0.0",
+  "description": "Financial Management Association at the University of Oregon",
+  "private": true,
+  "scripts": {
+    "fetch-rankings": "node scripts/fetch-standings.js"
+  },
+  "devDependencies": {
+    "playwright": "^1.49.0"
+  }
+}

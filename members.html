@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exec Legacy - Financial Management Association</title>
+    <meta name="description"
+        content="Executive Board Legacy of the Financial Management Association at the University of Oregon.">
+
+    <!-- Open Graph / Social Media & Search Engine Preview -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://uofma.org/members.html">
+    <meta property="og:title" content="Exec Legacy - Financial Management Association">
+    <meta property="og:description" content="Executive Board Legacy of the Financial Management Association at the University of Oregon.">
+    <meta property="og:image" content="https://uofma.org/FMA.logo.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="./FMA.logo.jpg">
+    <link rel="apple-touch-icon" href="./FMA.logo.jpg">
+
+    <!-- Google Fonts: PT Serif -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-green: #4A6741;
+            --dark-green-text: #3D5A3E;
+            --cream-text: #E8E2C8;
+            --light-bg: #F5F2EB;
+            --white: #FFFFFF;
+            --card-border: #E0DCD4;
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'PT Serif', serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--dark-green-text);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-style: italic;
+            font-weight: 700;
+        }
+
+        p {
+            font-weight: 400;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition-speed);
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 4px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition-speed);
+            border: 2px solid transparent;
+            text-align: center;
+        }
+
+        .btn-green {
+            background-color: var(--primary-green);
+            color: var(--white);
+        }
+
+        .btn-green:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* Navigation */
+        header {
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            font-style: italic;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-green);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--primary-green);
+            border-radius: 2px;
+        }
+
+        /* Page Banner */
+        .page-banner {
+            background: linear-gradient(135deg, rgba(74, 103, 65, 0.08) 0%, rgba(232, 226, 200, 0.3) 100%);
+            padding: 60px 0 40px;
+            text-align: center;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .page-banner h1 {
+            font-size: 3.2rem;
+            color: var(--primary-green);
+            margin-bottom: 0.8rem;
+        }
+
+        .page-banner p {
+            font-size: 1.15rem;
+            max-width: 720px;
+            margin: 0 auto;
+            color: rgba(61, 90, 62, 0.85);
+        }
+
+        /* Exec Grid & Cards */
+        .exec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+
+        .exec-card {
+            background-color: transparent;
+            border: none;
+            border-top: 2px solid var(--primary-green);
+            border-radius: 0;
+            padding: 2.2rem 1rem 1rem;
+            text-align: center;
+            transition: background-color 0.4s ease, border-color 0.4s ease;
+            box-shadow: none;
+        }
+
+        .exec-card:hover {
+            background-color: rgba(74, 103, 65, 0.04);
+            border-top-color: var(--dark-green-text);
+        }
+
+        .exec-card img {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 4px solid var(--primary-green);
+            margin: 0 auto 1.2rem;
+            box-shadow: 0 4px 14px rgba(74, 103, 65, 0.2);
+        }
+
+        .exec-card h3 {
+            font-size: 1.4rem;
+            color: var(--primary-green);
+            margin-bottom: 0.3rem;
+            font-style: normal;
+        }
+
+        .exec-role {
+            font-weight: 700;
+            font-size: 0.98rem;
+            color: var(--dark-green-text);
+            margin-bottom: 0.2rem;
+        }
+
+        .exec-major {
+            font-size: 0.88rem;
+            color: rgba(61, 90, 62, 0.7);
+            font-style: italic;
+        }
+
+        .exec-badge {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 50px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+        }
+
+        .exec-badge.current {
+            background-color: var(--primary-green);
+            color: var(--cream-text);
+        }
+
+        .exec-badge.inaugural {
+            background-color: #C8963E;
+            color: var(--white);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-green);
+            color: var(--cream-text);
+            padding: 60px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--white);
+            font-style: italic;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            font-size: 1.1rem;
+            margin-bottom: 1.2rem;
+            font-style: normal;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(232, 226, 200, 0.2);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: rgba(232, 226, 200, 0.7);
+        }
+
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                flex-direction: column;
+                padding: 2rem;
+                border-bottom: 1px solid var(--card-border);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header / Navigation -->
+    <header>
+        <div class="container-fluid" style="padding: 0 40px;">
+            <nav>
+                <a href="./index.html" class="logo">FMA</a>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="nav-links" id="nav-links">
+                    <a href="./index.html#about">About</a>
+                    <a href="./index.html#what-offer">What We Offer</a>
+                    <a href="./index.html#benefits">Benefits</a>
+                    <a href="./members.html">Exec Legacy</a>
+                    <a href="./contact.html">Contact</a>
+                    <a href="./contact.html" class="btn btn-green">Join the Club</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Page Banner -->
+        <section class="page-banner">
+            <div class="container">
+                <h1>Executive Board Legacy</h1>
+                <p>Honoring the founding executive classes and student leaders who build and guide the Financial Management Association at the University of Oregon.</p>
+            </div>
+        </section>
+
+        <!-- 2026-2027 Executive Board -->
+        <section class="section-padding">
+            <div class="container reveal">
+                <div style="text-align: center;">
+                    <span class="exec-badge current">Current Executive Board</span>
+                    <h2 style="font-size: 2.8rem; color: var(--primary-green); margin-top: 0.4rem;">2026 – 2027 Executive Class</h2>
+                </div>
+                <div class="exec-grid">
+                    <div class="exec-card">
+                        <img src="./Sam%20updated%20picture.png" alt="Sam Aziz">
+                        <h3>Sam Aziz</h3>
+                        <p class="exec-role">President</p>
+                        <p class="exec-major">Business Finance</p>
+                    </div>
+                    <div class="exec-card">
+                        <img src="./Ben%20Berger.jpeg" alt="Ben Berger">
+                        <h3>Ben Berger</h3>
+                        <p class="exec-role">VP of Membership</p>
+                        <p class="exec-major">Business Finance</p>
+                    </div>
+                    <div class="exec-card">
+                        <img src="./Andre%20Barrera.jpeg" alt="Andre Barrera">
+                        <h3>Andre Barrera</h3>
+                        <p class="exec-role">VP of Finance</p>
+                        <p class="exec-major">Business Finance &amp; Psychology</p>
+                    </div>
+                    <div class="exec-card">
+                        <img src="./Updated%20Seth%20Kyllo%20picture.png" alt="Seth Kyllo">
+                        <h3>Seth Kyllo</h3>
+                        <p class="exec-role">VP of Operations</p>
+                        <p class="exec-major">Business</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2025-2026 Executive Board -->
+        <section class="section-padding" style="background-color: var(--white); border-top: 1px solid var(--card-border); border-bottom: 1px solid var(--card-border);">
+            <div class="container reveal">
+                <div style="text-align: center;">
+                    <span class="exec-badge inaugural">Inaugural Founding Class</span>
+                    <h2 style="font-size: 2.8rem; color: var(--primary-green); margin-top: 0.4rem;">2025 – 2026 Executive Class</h2>
+                </div>
+                <div class="exec-grid">
+                    <div class="exec-card">
+                        <img src="./James%20Lawrence.jpeg" alt="James Lawrence">
+                        <h3>James Lawrence</h3>
+                        <p class="exec-role">President</p>
+                        <p class="exec-major">Economics</p>
+                    </div>
+                    <div class="exec-card">
+                        <img src="./Updated%20Jake%20Grissom%20Picture.png" alt="Jake Grissom">
+                        <h3>Jake Grissom</h3>
+                        <p class="exec-role">VP of Finance</p>
+                        <p class="exec-major">Business Finance</p>
+                    </div>
+                    <div class="exec-card">
+                        <img src="./Tony%20DiMeco.jpeg" alt="Tony DiMeco">
+                        <h3>Tony DiMeco</h3>
+                        <p class="exec-role">VP of Membership</p>
+                        <p class="exec-major">Business Finance</p>
+                    </div>
+                    <div class="exec-card">
+                        <img src="./Sam%20updated%20picture.png" alt="Sam Aziz">
+                        <h3>Sam Aziz</h3>
+                        <p class="exec-role">VP of Operations</p>
+                        <p class="exec-major">Business Finance</p>
+                    </div>
+                    <div class="exec-card">
+                        <img src="./Braydon%20Perko.jpeg" alt="Braydon Perko">
+                        <h3>Braydon Perko</h3>
+                        <p class="exec-role">VP</p>
+                        <p class="exec-major">Business Finance &amp; Economics</p>
+                    </div>
+                    <div class="exec-card">
+                        <img src="./Charles%20Northern.jpeg" alt="Charles Northern">
+                        <h3>Charles Northern</h3>
+                        <p class="exec-role">VP of Marketing</p>
+                        <p class="exec-major">Journalism &amp; Advertisement</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <a href="./index.html" class="footer-logo">FMA</a>
+                <p>Building the next generation of financial leaders at the University of Oregon.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="./index.html#about">About</a></li>
+                    <li><a href="./index.html#what-offer">What We Offer</a></li>
+                    <li><a href="./index.html#benefits">Benefits</a></li>
+                    <li><a href="./members.html">Exec Legacy</a></li>
+                    <li><a href="./contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Connect With Us</h4>
+                <ul>
+                    <li><a href="https://instagram.com/Oregon_FMA" target="_blank">Instagram</a></li>
+                    <li><a href="https://www.linkedin.com/company/financial-management-association-university-of-oregon/posts/?feedView=all" target="_blank">LinkedIn</a></li>
+                    <li><a href="mailto:uofma@uoregon.edu">Email</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Financial Management Association at University of Oregon. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close nav on link click (mobile)
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Intersection Observer for Reveal Animation
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(element => {
+            revealObserver.observe(element);
+        });
+    </script>
+    <script type="module">
+        import { inject } from 'https://cdn.jsdelivr.net/npm/@vercel/analytics@1/dist/module/index.js';
+        inject();
+    </script>
+</body>
+
+</html>

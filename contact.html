@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact FMA - Financial Management Association</title>
+  <meta name="description" content="Contact the Financial Management Association at the University of Oregon.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://uofma.org/contact.html">
+  <meta property="og:title" content="Contact FMA - Financial Management Association">
+  <meta property="og:description" content="Contact the Financial Management Association at the University of Oregon.">
+  <meta property="og:image" content="https://uofma.org/FMA.logo.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Contact FMA - Financial Management Association">
+  <meta name="twitter:description" content="Contact the Financial Management Association at the University of Oregon.">
+  <meta name="twitter:image" content="https://uofma.org/FMA.logo.jpg">
+  <link rel="icon" type="image/jpeg" href="./FMA.logo.jpg">
+  <link rel="apple-touch-icon" href="./FMA.logo.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=PT+Serif:ital,wght@0,400;0,700;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-shell">
+      <nav class="nav">
+        <a href="./index.html" class="brand">FMA</a>
+        <button id="menu-toggle" class="menu-toggle" aria-label="Open navigation" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <div id="nav-links" class="nav-links">
+          <a href="./index.html#about">About</a>
+          <a href="./index.html#what-offer">What We Offer</a>
+          <a href="./index.html#benefits">Benefits</a>
+          <a href="./index.html#executives">Executives</a>
+          <a href="./contact.html">Contact</a>
+          <a href="./contact.html" class="btn btn-primary">Join the Club</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section-surface reveal">
+      <div class="site-shell">
+        <div class="section-head">
+          <h1>Get in Touch</h1>
+          <p>Have questions? Want to be a guest speaker? Interested in sponsoring? We'd love to hear from you.</p>
+        </div>
+        <div class="split">
+          <div>
+            <img src="./lillis-tabling.jpg" alt="FMA members recruiting at Lillis Business Complex">
+            <p>FMA members recruiting at Lillis Business Complex</p>
+          </div>
+          <form id="contact-form" class="contact-form" action="https://formsubmit.co/uofma@uoregon.edu" method="POST">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_subject" value="New FMA Website Contact Form Submission">
+            <input type="text" name="_honey" style="display:none">
+
+            <div class="form-grid">
+              <div><label for="contact-name">Full Name</label><input id="contact-name" name="Name" type="text" required></div>
+              <div><label for="contact-email">Email</label><input id="contact-email" name="Email" type="email" required></div>
+            </div>
+            <div>
+              <label for="contact-subject">Subject</label>
+              <select id="contact-subject" name="Subject">
+                <option>General Inquiry</option>
+                <option>Guest Speaker Interest</option>
+                <option>Sponsorship</option>
+                <option>Membership Question</option>
+              </select>
+            </div>
+            <div>
+              <label for="contact-message">Message</label>
+              <textarea id="contact-message" name="Message" rows="6" required></textarea>
+            </div>
+            <button class="btn btn-primary" id="contact-submit" type="submit">Send Message</button>
+            <p id="form-status" class="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-surface reveal">
+      <div class="site-shell">
+        <div class="section-head"><h2>Other Ways to Connect</h2></div>
+        <div class="card-grid three">
+          <article class="card"><h3>Follow us on Instagram</h3><p><a href="https://instagram.com/Oregon_FMA" target="_blank" rel="noreferrer">@Oregon_FMA</a></p></article>
+          <article class="card"><h3>Connect on LinkedIn</h3><p><a href="https://www.linkedin.com/company/financial-management-association-university-of-oregon/posts/?feedView=all" target="_blank" rel="noreferrer">FMA at UO</a></p></article>
+          <article class="card"><h3>Email Us</h3><p><a href="mailto:uofma@uoregon.edu">uofma@uoregon.edu</a></p></article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="copyright">&copy; 2026 Financial Management Association at University of Oregon. All rights reserved.</p>
+  </footer>
+  <script src="./script.js"></script>
+</body>
+</html>
