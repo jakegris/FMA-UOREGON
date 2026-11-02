@@ -2,9 +2,9 @@ name: Update MarketWatch Leaderboard
 
 on:
   schedule:
-    # Runs every Friday at 21:15 UTC (1:15 PM Pacific Daylight Time / 2:15 PM Pacific Standard Time, right after market close at 1:00 PM PT)
+    # Runs every Friday at 1:15 PM PT (21:15 UTC)
     - cron: '15 21 * * 5'
-  workflow_dispatch: # Allows manual trigger anytime from the GitHub Actions tab
+  workflow_dispatch:
 
 jobs:
   update-leaderboard:
@@ -32,7 +32,7 @@ jobs:
           MARKETWATCH_EMAIL: ${{ secrets.MARKETWATCH_EMAIL }}
           MARKETWATCH_PASSWORD: ${{ secrets.MARKETWATCH_PASSWORD }}
           GAME_PASSWORD: ${{ secrets.GAME_PASSWORD || 'Fall2026' }}
-          MARKETWATCH_GAME_URL: 'https://www.marketwatch.com/games/fma-fall-2026-investment-game-'
+          MARKETWATCH_GAME_URL: 'https://www.marketwatch.com/games/fma-fall-2026-investment-game-/rankings'
         run: node scripts/fetch-standings.js
 
       - name: Commit and Push Updated Rankings

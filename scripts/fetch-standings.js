@@ -2,7 +2,7 @@ const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
 
-const GAME_URL = process.env.MARKETWATCH_GAME_URL || 'https://www.marketwatch.com/games/fma-fall-2026-investment-game-';
+const GAME_URL = process.env.MARKETWATCH_GAME_URL || 'https://www.marketwatch.com/games/fma-fall-2026-investment-game-/rankings';
 const GAME_PASSWORD = process.env.GAME_PASSWORD || 'Fall2026';
 const MW_EMAIL = process.env.MARKETWATCH_EMAIL;
 const MW_PASSWORD = process.env.MARKETWATCH_PASSWORD;
@@ -31,7 +31,7 @@ async function run() {
   const page = await context.newPage();
 
   try {
-    // 1. If MarketWatch user credentials are provided, authenticate first
+    // 1. Authenticate via MarketWatch if credentials provided
     if (MW_EMAIL && MW_PASSWORD) {
       console.log('Logging into MarketWatch account...');
       await page.goto('https://accounts.marketwatch.com/login', { waitUntil: 'domcontentloaded', timeout: 60000 }).catch(() => {});
@@ -54,21 +54,24 @@ async function run() {
           if (await submitBtn.isVisible().catch(() => false)) {
             await submitBtn.click();
             console.log('Submitted login credentials. Waiting for session...');
-            await page.waitForTimeout(5000);
+            await page.waitForTimeout(6000);
           }
         }
       }
     }
 
-    // 2. Navigate to Game Page
-    console.log(`Navigating to tournament page: ${GAME_URL}`);
+    // 2. Navigate directly to the Game Rankings Page
+    console.log(`Navigating to tournament rankings page: ${GAME_URL}`);
     await page.goto(GAME_URL, { waitUntil: 'domcontentloaded', timeout: 60000 });
-    await page.waitForTimeout(4000);
+    await page.waitForTimeout(5000);
+
+    console.log('Current page URL:', page.url());
+    console.log('Current page title:', await page.title());
 
     // 3. Handle Game Password prompt if required
     const gamePassInput = page.locator('input[type="password"], input[name*="pass" i], input[placeholder*="pass" i]').first();
-    if (await gamePassInput.isVisible({ timeout: 5000 }).catch(() => false)) {
-      console.log('Entering game password...');
+    if (await gamePassInput.isVisible({ timeout: 4000 }).catch(() => false)) {
+      console.log('Game password prompt detected. Submitting game password...');
       await gamePassInput.fill(GAME_PASSWORD);
       const enterBtn = page.locator('button[type="submit"], button:has-text("Enter"), button:has-text("Submit"), button:has-text("Join")').first();
       if (await enterBtn.isVisible().catch(() => false)) {
@@ -77,33 +80,54 @@ async function run() {
       }
     }
 
-    // 4. Attempt to find and click the Download / Export button
-    console.log('Checking for export/download button...');
-    const downloadBtn = page.locator('button:has-text("Download"), a:has-text("Download"), button:has-text("Export"), a:has-text("Export"), [aria-label*="download" i]').first();
+    // 4. Locate and click the Download button on the right side of rankings
+    console.log('Searching for the rankings download button...');
+
+    const downloadSelectors = [
+      'button:has-text("Download")',
+      'a:has-text("Download")',
+      'button:has-text("Export")',
+      'a:has-text("Export")',
+      '[aria-label*="download" i]',
+      '[title*="download" i]',
+      'a[href*="download" i]',
+      'a[href*=".csv" i]',
+      'button[class*="download" i]',
+      'a[class*="download" i]',
+      '.ranking button',
+      '.rankings button'
+    ];
 
     let downloaded = false;
-    if (await downloadBtn.isVisible({ timeout: 8000 }).catch(() => false)) {
-      console.log('Download button located. Initiating download...');
-      try {
-        const [download] = await Promise.all([
-          page.waitForEvent('download', { timeout: 15000 }),
-          downloadBtn.click()
-        ]);
-        const tempPath = await download.path();
-        if (tempPath && fs.existsSync(tempPath)) {
-          fs.copyFileSync(tempPath, OUTPUT_FILE);
-          console.log(`Successfully saved tournament CSV to ${OUTPUT_FILE}`);
-          downloaded = true;
+    for (const sel of downloadSelectors) {
+      const btn = page.locator(sel).first();
+      if (await btn.isVisible({ timeout: 1500 }).catch(() => false)) {
+        console.log(`Found download button with selector: ${sel}. Clicking to download...`);
+        try {
+          const [download] = await Promise.all([
+            page.waitForEvent('download', { timeout: 15000 }),
+            btn.click()
+          ]);
+          const tempPath = await download.path();
+          if (tempPath && fs.existsSync(tempPath)) {
+            fs.copyFileSync(tempPath, OUTPUT_FILE);
+            console.log(`Successfully downloaded rankings to ${OUTPUT_FILE}`);
+            downloaded = true;
+            break;
+          }
+        } catch (dlErr) {
+          console.log(`Download event failed for ${sel}:`, dlErr.message);
         }
-      } catch (dlErr) {
-        console.log('Direct download timed out. Falling back to table extraction:', dlErr.message);
       }
     }
 
-    // 5. Fallback: Extract from the rendered table directly
+    // 5. Fallback: If direct download didn't trigger, scrape the rendered table
     if (!downloaded) {
-      console.log('Extracting standings directly from the rendered table...');
+      console.log('Download button not triggered. Falling back to table extraction...');
+      await page.waitForSelector('table, [role="table"], tbody tr', { timeout: 10000 }).catch(() => {});
+
       const rows = await page.locator('table tr, .table tr, [role="row"]').all();
+      console.log(`Found ${rows.length} table rows on page.`);
       const csvLines = ['Rank,Player,Portfolio Value,Overall Return'];
 
       let extractedCount = 0;
@@ -130,12 +154,13 @@ async function run() {
         fs.writeFileSync(OUTPUT_FILE, csvLines.join('\n') + '\n', 'utf8');
         console.log(`Successfully extracted ${extractedCount} player rows to ${OUTPUT_FILE}`);
       } else {
-        console.warn('Could not extract table rows. Standings may require user login or different selectors.');
-        throw new Error('Unable to find or extract standings data.');
+        const bodySnippet = (await page.locator('body').innerText().catch(() => '')).slice(0, 500);
+        console.log('Page preview text:', bodySnippet);
+        throw new Error('Unable to download or extract standings data.');
       }
     }
 
-    console.log('Automation finished successfully.');
+    console.log('Automation finished successfully!');
   } finally {
     await browser.close();
   }
