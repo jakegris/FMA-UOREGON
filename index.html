@@ -3149,7 +3149,7 @@
                         const value = valueIdx !== -1 ? (parts[valueIdx] || '') : '';
                         const ret = returnIdx !== -1 ? (parts[returnIdx] || '') : '';
 
-                        if (player) {
+                        if (player && parts[0] !== 'N/A' && !parts[0].toLowerCase().includes('place')) {
                             dataRows.push({ player, value, ret });
                         }
                     }
