@@ -3173,13 +3173,20 @@
                             netGainStr = (gainNum >= 0 ? '+$' : '-$') + Math.abs(gainNum).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
                         }
 
-                        // Format return %
-                        let retVal = row.ret ? row.ret.trim() : '';
-                        if (retVal && !retVal.includes('%')) retVal += '%';
-                        const isRetNeg = retVal.startsWith('-');
-                        if (retVal && !retVal.startsWith('+') && !isRetNeg) {
-                            const num = parseFloat(retVal);
-                            if (!isNaN(num) && num > 0) retVal = '+' + retVal;
+                        // Format return %: if CSV doesn't provide a % return, calculate it vs $100K starting capital
+                        let retVal = '';
+                        let isRetNeg = false;
+                        if (row.ret && row.ret.includes('%')) {
+                            retVal = row.ret.trim();
+                            isRetNeg = retVal.startsWith('-');
+                            if (!retVal.startsWith('+') && !isRetNeg) {
+                                const num = parseFloat(retVal);
+                                if (!isNaN(num) && num > 0) retVal = '+' + retVal;
+                            }
+                        } else if (!isNaN(rawNum)) {
+                            const pctNum = ((rawNum - 100000) / 100000) * 100;
+                            isRetNeg = pctNum < 0;
+                            retVal = (pctNum >= 0 ? '+' : '') + pctNum.toFixed(2) + '%';
                         }
 
                         // 1. Update Architectural Podium Tier (Ranks 1 to 3)
