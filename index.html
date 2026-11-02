@@ -3107,15 +3107,25 @@
                 weekTagEl.textContent = weekText;
             }
 
-            // 2. Fetch and Parse rankings.csv (auto-cache-busting)
-            fetch('./rankings.csv?t=' + Date.now())
-                .then(res => {
-                    if (!res.ok) throw new Error('No CSV found');
-                    return res.text();
-                })
-                .then(csvText => {
-                    const lines = csvText.trim().split(/\r?\n/);
-                    if (lines.length < 2) return;
+            // 2. Fetch and Parse rankings.csv or download.csv (auto-cache-busting)
+            async function getCSVData() {
+                const urls = ['./download.csv?t=' + Date.now(), './rankings.csv?t=' + Date.now()];
+                for (let u of urls) {
+                    try {
+                        const r = await fetch(u);
+                        if (r.ok) {
+                            const txt = await r.text();
+                            if (txt && txt.includes(',')) return txt;
+                        }
+                    } catch (e) {}
+                }
+                return null;
+            }
+
+            getCSVData().then(csvText => {
+                if (!csvText) return;
+                const lines = csvText.trim().split(/\r?\n/);
+                if (lines.length < 2) return;
 
                     // Parse header row
                     const headers = lines[0].split(',').map(h => h.trim().toLowerCase().replace(/["']/g, ''));
