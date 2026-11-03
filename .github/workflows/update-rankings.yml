@@ -2,9 +2,9 @@ name: Update MarketWatch Leaderboard
 
 on:
   schedule:
-    # Runs every Friday at 1:15 PM PT (21:15 UTC)
+    # Runs every Friday at 1:15 PM PT (21:15 UTC) right after market close
     - cron: '15 21 * * 5'
-  workflow_dispatch:
+  workflow_dispatch: # Allows manual trigger anytime from GitHub Actions tab
 
 jobs:
   update-leaderboard:
@@ -16,24 +16,33 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps chromium
-
-      - name: Fetch MarketWatch Standings
+      - name: Fetch Live MarketWatch Rankings
         env:
-          MARKETWATCH_EMAIL: ${{ secrets.MARKETWATCH_EMAIL }}
-          MARKETWATCH_PASSWORD: ${{ secrets.MARKETWATCH_PASSWORD }}
-          GAME_PASSWORD: ${{ secrets.GAME_PASSWORD || 'Fall2026' }}
-          MARKETWATCH_GAME_URL: 'https://www.marketwatch.com/games/fma-fall-2026-investment-game-/rankings'
-        run: node scripts/fetch-standings.js
+          MARKETWATCH_COOKIE: ${{ secrets.MARKETWATCH_COOKIE }}
+        run: |
+          if [ -z "$MARKETWATCH_COOKIE" ]; then
+            echo "Error: MARKETWATCH_COOKIE secret is missing. Please add it to your repository secrets."
+            exit 1
+          fi
+
+          echo "Fetching rankings CSV directly from MarketWatch..."
+          curl -s -L \
+            -H "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" \
+            -H "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8" \
+            -H "Accept-Language: en-US,en;q=0.9" \
+            -H "Cookie: $MARKETWATCH_COOKIE" \
+            "https://www.marketwatch.com/games/fma-fall-2026-investment-game-/download?view=rankings&pub=&isDownload=true" \
+            -o rankings.csv
+
+          # Verify that the downloaded file is a valid CSV containing player standings
+          if grep -q -i "Name" rankings.csv && grep -q -i "Net Worth" rankings.csv; then
+            echo "Successfully retrieved MarketWatch rankings CSV!"
+            head -n 5 rankings.csv
+          else
+            echo "Error: Downloaded content does not appear to be a valid rankings CSV. Your session cookie may be expired."
+            head -n 10 rankings.csv
+            exit 1
+          fi
 
       - name: Commit and Push Updated Rankings
         run: |
@@ -43,7 +52,7 @@ jobs:
             git add rankings.csv
             git commit -m "chore(standings): update weekly MarketWatch rankings [skip ci]"
             git push
-            echo "Standings updated and pushed to repository. Vercel will deploy automatically."
+            echo "Standings updated and pushed to GitHub. Vercel will deploy automatically."
           else
             echo "No changes detected in rankings.csv."
           fi

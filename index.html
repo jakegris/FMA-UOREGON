@@ -3109,7 +3109,13 @@
 
             // 2. Fetch and Parse rankings.csv or download.csv (auto-cache-busting)
             async function getCSVData() {
-                const urls = ['./download.csv?t=' + Date.now(), './rankings.csv?t=' + Date.now()];
+                const urls = [
+                    './download (1).csv?t=' + Date.now(),
+                    './download%20(1).csv?t=' + Date.now(),
+                    './download.csv?t=' + Date.now(),
+                    './rankings.csv?t=' + Date.now(),
+                    './Rankings - FMA Fall 2026 Investment Game .csv?t=' + Date.now()
+                ];
                 for (let u of urls) {
                     try {
                         const r = await fetch(u);
