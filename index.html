@@ -1201,17 +1201,19 @@
             }
         }
 
-        /* MarketWatch Investment Simulation Section */
+        /* ==========================================================================
+           MARKETWATCH INVESTMENT SIMULATION (INSTITUTIONAL GRADE)
+           ========================================================================== */
         #simulation {
-            background-color: var(--light-bg);
+            background-color: var(--cream-bg);
             border-top: 1px solid var(--card-border);
             border-bottom: 1px solid var(--card-border);
         }
 
         .sim-header {
-            text-align: center;
-            max-width: 720px;
+            max-width: 820px;
             margin: 0 auto 2.5rem;
+            text-align: center;
         }
 
         .sim-kicker {
@@ -1248,9 +1250,9 @@
             background: var(--white);
             border: 1px solid var(--card-border);
             border-radius: 4px;
-            max-width: 880px;
+            max-width: 920px;
             margin: 0 auto 2rem;
-            padding: 0.85rem 1.75rem;
+            padding: 0.9rem 1.75rem;
         }
 
         .sim-spec {
@@ -1283,13 +1285,13 @@
 
         /* Master Tournament Board */
         .sim-board {
-            max-width: 880px;
+            max-width: 920px;
             margin: 0 auto;
             background: var(--white);
             border: 1px solid var(--card-border);
             border-radius: 4px;
             overflow: hidden;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
         }
 
         .sim-board-header {
@@ -1304,11 +1306,11 @@
         }
 
         .sim-board-title {
-            font-size: 1.2rem;
-            color: var(--primary-green);
-            margin: 0 0 0.15rem;
+            font-size: 1.25rem;
+            color: var(--dark-green-text);
+            margin: 0 0 0.2rem;
             font-family: 'PT Serif', serif;
-            font-style: italic;
+            font-weight: 700;
         }
 
         .sim-board-subtitle {
@@ -1320,19 +1322,20 @@
 
         .sim-board-tag {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             font-weight: 700;
             color: var(--dark-green-text);
-            background: #EFECE4;
+            background: #EAE6DC;
             padding: 0.35rem 0.8rem;
             border-radius: 3px;
-            letter-spacing: 0.03em;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
         }
 
-        /* Architectural 3-Column Podium Tier */
+        /* Architectural Top 3 Grid - Natural Order (01, 02, 03) */
         .sim-podium-board {
             display: grid;
-            grid-template-columns: 1fr 1.08fr 1fr;
+            grid-template-columns: repeat(3, 1fr);
             background: #FAF9F6;
             border-bottom: 1px solid var(--card-border);
         }
@@ -1345,56 +1348,81 @@
             background: #FAF9F6;
             border-right: 1px solid var(--card-border);
             position: relative;
+            transition: background-color 0.2s ease;
         }
 
         .podium-card:last-child {
             border-right: none;
         }
 
-        .podium-card.rank-2 {
-            order: 1;
+        .podium-card:hover {
+            background: #F4F1EA;
         }
 
         .podium-card.rank-1 {
-            order: 2;
             background: var(--white);
-            padding: 2.1rem 1.6rem;
-            box-shadow: inset 0 3px 0 #C59B27;
+            border-top: 3px solid var(--primary-green);
+            padding-top: calc(1.75rem - 3px);
         }
 
-        .podium-card.rank-3 {
-            order: 3;
+        .podium-card.rank-1:hover {
+            background: #FCFBF9;
         }
 
-        .podium-rank-tag {
+        .podium-header-row {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.85rem;
+        }
+
+        .podium-rank-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 26px;
+            height: 26px;
+            border-radius: 3px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .rank-1-badge {
+            background: var(--primary-green);
+            color: var(--white);
+        }
+
+        .rank-2-badge {
+            background: #7A8276;
+            color: var(--white);
+        }
+
+        .rank-3-badge {
+            background: #A09685;
+            color: var(--white);
+        }
+
+        .podium-rank-label {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             font-size: 0.68rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: #7A8077;
-            margin-bottom: 0.75rem;
-        }
-
-        .podium-rank-tag.gold {
-            color: #997300;
+            letter-spacing: 0.1em;
+            color: #777;
         }
 
         .podium-manager-name {
             font-family: 'PT Serif', serif;
-            font-size: 1.3rem;
+            font-size: 1.35rem;
             font-weight: 700;
             color: var(--dark-green-text);
-            margin-bottom: 1rem;
+            margin-bottom: 0.85rem;
             line-height: 1.25;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-        }
-
-        .podium-manager-name.champion {
-            font-size: 1.5rem;
-            color: var(--primary-green);
         }
 
         .podium-valuation {
@@ -1407,54 +1435,68 @@
             font-size: 0.62rem;
             text-transform: uppercase;
             letter-spacing: 0.08em;
-            color: #8A8F85;
+            color: #888;
             margin-bottom: 0.2rem;
             font-weight: 600;
         }
 
         .podium-val-num {
             display: block;
-            font-family: 'PT Serif', serif;
-            font-size: 1.35rem;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 1.65rem;
             font-weight: 700;
             color: var(--dark-green-text);
             font-variant-numeric: tabular-nums;
+            letter-spacing: -0.02em;
         }
 
-        .podium-val-num.featured {
-            font-size: 1.55rem;
-        }
-
-        .podium-returns {
-            display: flex;
+        .podium-metrics-bar {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
             align-items: center;
-            gap: 0.4rem;
             padding-top: 0.75rem;
             border-top: 1px solid #ECE8DF;
-            font-variant-numeric: tabular-nums;
-            font-size: 0.88rem;
+        }
+
+        .podium-metric {
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
+
+        .podium-metric:last-child {
+            text-align: right;
+        }
+
+        .podium-metric-label {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 0.62rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #888;
+            font-weight: 600;
+        }
+
+        .podium-metric-val {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 0.92rem;
             font-weight: 700;
+            font-variant-numeric: tabular-nums;
         }
 
-        .podium-gain {
-            color: #2E7D32;
+        .podium-metric-val.positive {
+            color: #1B5E20;
         }
 
-        .podium-gain.negative {
+        .podium-metric-val.negative {
             color: #C62828;
         }
 
-        .podium-sep {
-            color: #BBB5A8;
-            font-weight: 400;
-        }
-
-        .podium-ret {
-            color: #2E7D32;
-        }
-
-        .podium-ret.negative {
-            color: #C62828;
+        .podium-metric-divider {
+            width: 1px;
+            height: 22px;
+            background: #E5E0D8;
+            margin: 0 0.75rem;
         }
 
         /* Ledger Table Section */
@@ -1463,15 +1505,24 @@
         }
 
         .sim-table-subhead {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             background: #F7F5F0;
-            padding: 0.65rem 1.75rem;
+            padding: 0.7rem 1.75rem;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             font-size: 0.68rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            color: #777;
+            color: #666;
             font-weight: 700;
             border-bottom: 1px solid var(--card-border);
+        }
+
+        .sim-roster-count {
+            color: #888;
+            font-weight: 600;
+            letter-spacing: 0.05em;
         }
 
         .sim-table {
@@ -1485,7 +1536,7 @@
             background: #FAF9F6;
             padding: 0.75rem 1.75rem;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            font-size: 0.68rem;
+            font-size: 0.66rem;
             text-transform: uppercase;
             letter-spacing: 0.08em;
             color: #6E7369;
@@ -1505,14 +1556,23 @@
         }
 
         .sim-table tbody tr:hover td {
-            background: #FAF9F6;
+            background: rgba(74, 103, 65, 0.03);
+        }
+
+        .sim-row-extra {
+            display: none;
+        }
+
+        .sim-row-extra.is-visible {
+            display: table-row;
         }
 
         .col-rank {
             text-align: center;
-            font-family: 'PT Serif', serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             font-weight: 700;
             color: #777;
+            font-size: 0.85rem;
         }
 
         .col-player strong {
@@ -1522,7 +1582,7 @@
 
         .col-value {
             text-align: right;
-            font-family: 'PT Serif', serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             font-weight: 700;
             font-variant-numeric: tabular-nums;
             color: var(--dark-green-text);
@@ -1530,9 +1590,10 @@
 
         .col-gain {
             text-align: right;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             font-variant-numeric: tabular-nums;
             font-weight: 600;
-            color: #2E7D32;
+            color: #1B5E20;
         }
 
         .col-gain.negative {
@@ -1541,9 +1602,10 @@
 
         .col-return {
             text-align: right;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             font-variant-numeric: tabular-nums;
             font-weight: 700;
-            color: #2E7D32;
+            color: #1B5E20;
         }
 
         .col-return.negative {
@@ -1554,17 +1616,37 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.75rem 1.75rem;
+            padding: 0.85rem 1.75rem;
             background: #FAF9F6;
             border-top: 1px solid var(--card-border);
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            font-size: 0.7rem;
+            font-size: 0.72rem;
             color: #888;
+            flex-wrap: wrap;
+            gap: 0.75rem;
         }
 
-        /* Tournament Registration Banner */
+        .sim-expand-btn {
+            background: var(--white);
+            border: 1px solid #D8D3C8;
+            color: var(--dark-green-text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.4rem 0.85rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .sim-expand-btn:hover {
+            background: #F4F1EA;
+            border-color: #C0B9AA;
+        }
+
+        /* Tournament Access Box */
         .sim-invite-box {
-            max-width: 880px;
+            max-width: 920px;
             margin: 1.75rem auto 0;
             background: var(--white);
             border: 1px solid var(--card-border);
@@ -1581,9 +1663,9 @@
         .sim-invite-title {
             font-family: 'PT Serif', serif;
             font-size: 1.15rem;
-            color: var(--primary-green);
-            font-style: italic;
+            color: var(--dark-green-text);
             margin: 0 0 0.25rem;
+            font-weight: 700;
         }
 
         .sim-invite-desc {
@@ -1600,6 +1682,7 @@
             margin-top: 0.6rem;
             font-size: 0.82rem;
             color: #555;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
 
         .sim-cred-code {
@@ -1630,15 +1713,7 @@
                 border-right: none;
                 border-bottom: 1px solid var(--card-border);
             }
-            .podium-card.rank-1 {
-                order: 1 !important;
-                box-shadow: inset 3px 0 0 #C59B27;
-            }
-            .podium-card.rank-2 {
-                order: 2 !important;
-            }
-            .podium-card.rank-3 {
-                order: 3 !important;
+            .podium-card:last-child {
                 border-bottom: none;
             }
             .sim-invite-box {
@@ -2522,111 +2597,309 @@
                         </div>
                     </div>
 
-                    <!-- Architectural 3-Column Podium Tier -->
+                    <!-- Executive Benchmark Triptych (Natural Order: 01 Leader, 02 Runner-Up, 03 Third Position) -->
                     <div class="sim-podium-board">
-                        <!-- Rank 2: Runner Up (Left) -->
-                        <div class="podium-card rank-2" data-podium-card="2">
-                            <div class="podium-rank-tag">Rank II &middot; Runner Up</div>
-                            <div class="podium-manager-name" data-field="player">Seth Kyllo</div>
-                            <div class="podium-valuation">
-                                <span class="podium-val-caption">Portfolio Value</span>
-                                <span class="podium-val-num" data-field="value">$109,420.50</span>
-                            </div>
-                            <div class="podium-returns">
-                                <span class="podium-gain positive" data-field="gain">+$9,420.50</span>
-                                <span class="podium-sep">&middot;</span>
-                                <span class="podium-ret positive" data-field="return">+9.42%</span>
-                            </div>
-                        </div>
-
-                        <!-- Rank 1: Tournament Leader (Center, Elevated & Featured) -->
+                        <!-- Rank 1: Tournament Leader (Left) -->
                         <div class="podium-card rank-1" data-podium-card="1">
-                            <div class="podium-rank-tag gold">Rank I &middot; Tournament Leader</div>
-                            <div class="podium-manager-name champion" data-field="player">Sam Aziz</div>
+                            <div class="podium-header-row">
+                                <span class="podium-rank-badge rank-1-badge">01</span>
+                                <span class="podium-rank-label">Tournament Leader</span>
+                            </div>
+                            <div class="podium-manager-name" data-field="player">Hayes Kinkead</div>
                             <div class="podium-valuation">
                                 <span class="podium-val-caption">Portfolio Value</span>
-                                <span class="podium-val-num featured" data-field="value">$114,850.20</span>
+                                <span class="podium-val-num" data-field="value">$119,011.53</span>
                             </div>
-                            <div class="podium-returns">
-                                <span class="podium-gain positive" data-field="gain">+$14,850.20</span>
-                                <span class="podium-sep">&middot;</span>
-                                <span class="podium-ret positive" data-field="return">+14.85%</span>
+                            <div class="podium-metrics-bar">
+                                <div class="podium-metric">
+                                    <span class="podium-metric-label">Net P&amp;L</span>
+                                    <span class="podium-metric-val positive" data-field="gain">+$19,011.53</span>
+                                </div>
+                                <div class="podium-metric-divider"></div>
+                                <div class="podium-metric">
+                                    <span class="podium-metric-label">Total Return</span>
+                                    <span class="podium-metric-val positive" data-field="return">+19.01%</span>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Rank 3: Third Place (Right) -->
-                        <div class="podium-card rank-3" data-podium-card="3">
-                            <div class="podium-rank-tag">Rank III &middot; Third Place</div>
-                            <div class="podium-manager-name" data-field="player">Jake Grissom</div>
+                        <!-- Rank 2: Runner-Up (Center) -->
+                        <div class="podium-card rank-2" data-podium-card="2">
+                            <div class="podium-header-row">
+                                <span class="podium-rank-badge rank-2-badge">02</span>
+                                <span class="podium-rank-label">Runner-Up</span>
+                            </div>
+                            <div class="podium-manager-name" data-field="player">Sammi Barnard</div>
                             <div class="podium-valuation">
                                 <span class="podium-val-caption">Portfolio Value</span>
-                                <span class="podium-val-num" data-field="value">$106,780.00</span>
+                                <span class="podium-val-num" data-field="value">$116,289.18</span>
                             </div>
-                            <div class="podium-returns">
-                                <span class="podium-gain positive" data-field="gain">+$6,780.00</span>
-                                <span class="podium-sep">&middot;</span>
-                                <span class="podium-ret positive" data-field="return">+6.78%</span>
+                            <div class="podium-metrics-bar">
+                                <div class="podium-metric">
+                                    <span class="podium-metric-label">Net P&amp;L</span>
+                                    <span class="podium-metric-val positive" data-field="gain">+$16,289.18</span>
+                                </div>
+                                <div class="podium-metric-divider"></div>
+                                <div class="podium-metric">
+                                    <span class="podium-metric-label">Total Return</span>
+                                    <span class="podium-metric-val positive" data-field="return">+16.29%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Rank 3: Third Position (Right) -->
+                        <div class="podium-card rank-3" data-podium-card="3">
+                            <div class="podium-header-row">
+                                <span class="podium-rank-badge rank-3-badge">03</span>
+                                <span class="podium-rank-label">Third Position</span>
+                            </div>
+                            <div class="podium-manager-name" data-field="player">Paige Quinn</div>
+                            <div class="podium-valuation">
+                                <span class="podium-val-caption">Portfolio Value</span>
+                                <span class="podium-val-num" data-field="value">$102,234.64</span>
+                            </div>
+                            <div class="podium-metrics-bar">
+                                <div class="podium-metric">
+                                    <span class="podium-metric-label">Net P&amp;L</span>
+                                    <span class="podium-metric-val positive" data-field="gain">+$2,234.64</span>
+                                </div>
+                                <div class="podium-metric-divider"></div>
+                                <div class="podium-metric">
+                                    <span class="podium-metric-label">Total Return</span>
+                                    <span class="podium-metric-val positive" data-field="return">+2.23%</span>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Ledger Table Section -->
                     <div class="sim-table-wrap">
-                        <div class="sim-table-subhead">Comprehensive Standings (Ranks 1&ndash;5)</div>
+                        <div class="sim-table-subhead">
+                            <span>League Standings</span>
+                            <span class="sim-roster-count" id="sim-roster-count">29 Active Managers</span>
+                        </div>
                         <table class="sim-table">
                             <thead>
                                 <tr>
                                     <th style="width: 60px; text-align: center;">Rank</th>
                                     <th>Portfolio Manager</th>
                                     <th style="text-align: right;">Portfolio Value</th>
-                                    <th style="text-align: right;" class="hide-sm">Net Gain</th>
+                                    <th style="text-align: right;" class="hide-sm">Net P&amp;L</th>
                                     <th style="text-align: right;">Total Return</th>
                                 </tr>
                             </thead>
                             <tbody id="sim-table-body">
                                 <tr data-table-row="1">
                                     <td class="col-rank"><strong>01</strong></td>
-                                    <td class="col-player"><strong>Sam Aziz</strong></td>
-                                    <td class="col-value">$114,850.20</td>
-                                    <td class="col-gain positive hide-sm">+$14,850.20</td>
-                                    <td class="col-return positive">+14.85%</td>
+                                    <td class="col-player"><strong>Hayes Kinkead</strong></td>
+                                    <td class="col-value">$119,011.53</td>
+                                    <td class="col-gain positive hide-sm">+$19,011.53</td>
+                                    <td class="col-return positive">+19.01%</td>
                                 </tr>
                                 <tr data-table-row="2">
                                     <td class="col-rank"><strong>02</strong></td>
-                                    <td class="col-player"><strong>Seth Kyllo</strong></td>
-                                    <td class="col-value">$109,420.50</td>
-                                    <td class="col-gain positive hide-sm">+$9,420.50</td>
-                                    <td class="col-return positive">+9.42%</td>
+                                    <td class="col-player"><strong>Sammi Barnard</strong></td>
+                                    <td class="col-value">$116,289.18</td>
+                                    <td class="col-gain positive hide-sm">+$16,289.18</td>
+                                    <td class="col-return positive">+16.29%</td>
                                 </tr>
                                 <tr data-table-row="3">
                                     <td class="col-rank"><strong>03</strong></td>
-                                    <td class="col-player"><strong>Jake Grissom</strong></td>
-                                    <td class="col-value">$106,780.00</td>
-                                    <td class="col-gain positive hide-sm">+$6,780.00</td>
-                                    <td class="col-return positive">+6.78%</td>
+                                    <td class="col-player"><strong>Paige Quinn</strong></td>
+                                    <td class="col-value">$102,234.64</td>
+                                    <td class="col-gain positive hide-sm">+$2,234.64</td>
+                                    <td class="col-return positive">+2.23%</td>
                                 </tr>
                                 <tr data-table-row="4">
                                     <td class="col-rank"><strong>04</strong></td>
-                                    <td class="col-player"><strong>Madox Nicola</strong></td>
-                                    <td class="col-value">$104,230.15</td>
-                                    <td class="col-gain positive hide-sm">+$4,230.15</td>
-                                    <td class="col-return positive">+4.23%</td>
+                                    <td class="col-player"><strong>Jake Grissom</strong></td>
+                                    <td class="col-value">$101,864.97</td>
+                                    <td class="col-gain positive hide-sm">+$1,864.97</td>
+                                    <td class="col-return positive">+1.86%</td>
                                 </tr>
                                 <tr data-table-row="5">
                                     <td class="col-rank"><strong>05</strong></td>
-                                    <td class="col-player"><strong>Avi Shapero</strong></td>
-                                    <td class="col-value">$102,150.00</td>
-                                    <td class="col-gain positive hide-sm">+$2,150.00</td>
-                                    <td class="col-return positive">+2.15%</td>
+                                    <td class="col-player"><strong>Chris Astorga-Toledo</strong></td>
+                                    <td class="col-value">$100,711.63</td>
+                                    <td class="col-gain positive hide-sm">+$711.63</td>
+                                    <td class="col-return positive">+0.71%</td>
+                                </tr>
+                                <tr data-table-row="6">
+                                    <td class="col-rank"><strong>06</strong></td>
+                                    <td class="col-player"><strong>Keyston Noah Smith</strong></td>
+                                    <td class="col-value">$99,971.45</td>
+                                    <td class="col-gain negative hide-sm">-$28.56</td>
+                                    <td class="col-return negative">-0.03%</td>
+                                </tr>
+                                <tr data-table-row="7">
+                                    <td class="col-rank"><strong>07</strong></td>
+                                    <td class="col-player"><strong>Ian Thorstad</strong></td>
+                                    <td class="col-value">$99,801.54</td>
+                                    <td class="col-gain negative hide-sm">-$198.46</td>
+                                    <td class="col-return negative">-0.20%</td>
+                                </tr>
+                                <tr data-table-row="8">
+                                    <td class="col-rank"><strong>08</strong></td>
+                                    <td class="col-player"><strong>Vera Muryna</strong></td>
+                                    <td class="col-value">$99,718.10</td>
+                                    <td class="col-gain negative hide-sm">-$281.90</td>
+                                    <td class="col-return negative">-0.28%</td>
+                                </tr>
+                                <tr data-table-row="9">
+                                    <td class="col-rank"><strong>09</strong></td>
+                                    <td class="col-player"><strong>Alex Nickle</strong></td>
+                                    <td class="col-value">$99,654.64</td>
+                                    <td class="col-gain negative hide-sm">-$345.36</td>
+                                    <td class="col-return negative">-0.35%</td>
+                                </tr>
+                                <tr data-table-row="10">
+                                    <td class="col-rank"><strong>10</strong></td>
+                                    <td class="col-player"><strong>Jameson Bortnem</strong></td>
+                                    <td class="col-value">$98,356.21</td>
+                                    <td class="col-gain negative hide-sm">-$1,643.79</td>
+                                    <td class="col-return negative">-1.64%</td>
+                                </tr>
+                                <tr data-table-row="11" class="sim-row-extra">
+                                    <td class="col-rank"><strong>11</strong></td>
+                                    <td class="col-player"><strong>Alex Brink</strong></td>
+                                    <td class="col-value">$98,283.07</td>
+                                    <td class="col-gain negative hide-sm">-$1,716.93</td>
+                                    <td class="col-return negative">-1.72%</td>
+                                </tr>
+                                <tr data-table-row="12" class="sim-row-extra">
+                                    <td class="col-rank"><strong>12</strong></td>
+                                    <td class="col-player"><strong>Phillip Hagen</strong></td>
+                                    <td class="col-value">$97,836.96</td>
+                                    <td class="col-gain negative hide-sm">-$2,163.04</td>
+                                    <td class="col-return negative">-2.16%</td>
+                                </tr>
+                                <tr data-table-row="13" class="sim-row-extra">
+                                    <td class="col-rank"><strong>13</strong></td>
+                                    <td class="col-player"><strong>Ben Keown</strong></td>
+                                    <td class="col-value">$96,718.30</td>
+                                    <td class="col-gain negative hide-sm">-$3,281.70</td>
+                                    <td class="col-return negative">-3.28%</td>
+                                </tr>
+                                <tr data-table-row="14" class="sim-row-extra">
+                                    <td class="col-rank"><strong>14</strong></td>
+                                    <td class="col-player"><strong>Ben Berger</strong></td>
+                                    <td class="col-value">$95,631.72</td>
+                                    <td class="col-gain negative hide-sm">-$4,368.28</td>
+                                    <td class="col-return negative">-4.37%</td>
+                                </tr>
+                                <tr data-table-row="15" class="sim-row-extra">
+                                    <td class="col-rank"><strong>15</strong></td>
+                                    <td class="col-player"><strong>Lily P</strong></td>
+                                    <td class="col-value">$95,187.93</td>
+                                    <td class="col-gain negative hide-sm">-$4,812.07</td>
+                                    <td class="col-return negative">-4.81%</td>
+                                </tr>
+                                <tr data-table-row="16" class="sim-row-extra">
+                                    <td class="col-rank"><strong>16</strong></td>
+                                    <td class="col-player"><strong>Cameron Leoard</strong></td>
+                                    <td class="col-value">$94,840.15</td>
+                                    <td class="col-gain negative hide-sm">-$5,159.86</td>
+                                    <td class="col-return negative">-5.16%</td>
+                                </tr>
+                                <tr data-table-row="17" class="sim-row-extra">
+                                    <td class="col-rank"><strong>17</strong></td>
+                                    <td class="col-player"><strong>Nicolas Cone</strong></td>
+                                    <td class="col-value">$94,333.00</td>
+                                    <td class="col-gain negative hide-sm">-$5,667.00</td>
+                                    <td class="col-return negative">-5.67%</td>
+                                </tr>
+                                <tr data-table-row="18" class="sim-row-extra">
+                                    <td class="col-rank"><strong>18</strong></td>
+                                    <td class="col-player"><strong>Jack Jacobs</strong></td>
+                                    <td class="col-value">$93,953.64</td>
+                                    <td class="col-gain negative hide-sm">-$6,046.37</td>
+                                    <td class="col-return negative">-6.05%</td>
+                                </tr>
+                                <tr data-table-row="19" class="sim-row-extra">
+                                    <td class="col-rank"><strong>19</strong></td>
+                                    <td class="col-player"><strong>John Vandecoevering</strong></td>
+                                    <td class="col-value">$93,627.00</td>
+                                    <td class="col-gain negative hide-sm">-$6,373.00</td>
+                                    <td class="col-return negative">-6.37%</td>
+                                </tr>
+                                <tr data-table-row="20" class="sim-row-extra">
+                                    <td class="col-rank"><strong>20</strong></td>
+                                    <td class="col-player"><strong>Evan Gustafson</strong></td>
+                                    <td class="col-value">$92,275.85</td>
+                                    <td class="col-gain negative hide-sm">-$7,724.15</td>
+                                    <td class="col-return negative">-7.72%</td>
+                                </tr>
+                                <tr data-table-row="21" class="sim-row-extra">
+                                    <td class="col-rank"><strong>21</strong></td>
+                                    <td class="col-player"><strong>Kaiden Adya</strong></td>
+                                    <td class="col-value">$91,845.52</td>
+                                    <td class="col-gain negative hide-sm">-$8,154.49</td>
+                                    <td class="col-return negative">-8.15%</td>
+                                </tr>
+                                <tr data-table-row="22" class="sim-row-extra">
+                                    <td class="col-rank"><strong>22</strong></td>
+                                    <td class="col-player"><strong>Ketan Paradkar</strong></td>
+                                    <td class="col-value">$88,779.38</td>
+                                    <td class="col-gain negative hide-sm">-$11,220.62</td>
+                                    <td class="col-return negative">-11.22%</td>
+                                </tr>
+                                <tr data-table-row="23" class="sim-row-extra">
+                                    <td class="col-rank"><strong>23</strong></td>
+                                    <td class="col-player"><strong>Seth Kyllo</strong></td>
+                                    <td class="col-value">$86,200.58</td>
+                                    <td class="col-gain negative hide-sm">-$13,799.42</td>
+                                    <td class="col-return negative">-13.80%</td>
+                                </tr>
+                                <tr data-table-row="24" class="sim-row-extra">
+                                    <td class="col-rank"><strong>24</strong></td>
+                                    <td class="col-player"><strong>Sam Aziz</strong></td>
+                                    <td class="col-value">$84,840.29</td>
+                                    <td class="col-gain negative hide-sm">-$15,159.71</td>
+                                    <td class="col-return negative">-15.16%</td>
+                                </tr>
+                                <tr data-table-row="25" class="sim-row-extra">
+                                    <td class="col-rank"><strong>25</strong></td>
+                                    <td class="col-player"><strong>Daryan Azimi</strong></td>
+                                    <td class="col-value">$80,433.81</td>
+                                    <td class="col-gain negative hide-sm">-$19,566.20</td>
+                                    <td class="col-return negative">-19.57%</td>
+                                </tr>
+                                <tr data-table-row="26" class="sim-row-extra">
+                                    <td class="col-rank"><strong>26</strong></td>
+                                    <td class="col-player"><strong>Brady Moss</strong></td>
+                                    <td class="col-value">$76,534.42</td>
+                                    <td class="col-gain negative hide-sm">-$23,465.58</td>
+                                    <td class="col-return negative">-23.47%</td>
+                                </tr>
+                                <tr data-table-row="27" class="sim-row-extra">
+                                    <td class="col-rank"><strong>27</strong></td>
+                                    <td class="col-player"><strong>David Salomon</strong></td>
+                                    <td class="col-value">$76,483.30</td>
+                                    <td class="col-gain negative hide-sm">-$23,516.70</td>
+                                    <td class="col-return negative">-23.52%</td>
+                                </tr>
+                                <tr data-table-row="28" class="sim-row-extra">
+                                    <td class="col-rank"><strong>28</strong></td>
+                                    <td class="col-player"><strong>Chase Brown</strong></td>
+                                    <td class="col-value">$62,596.66</td>
+                                    <td class="col-gain negative hide-sm">-$37,403.35</td>
+                                    <td class="col-return negative">-37.40%</td>
+                                </tr>
+                                <tr data-table-row="29" class="sim-row-extra">
+                                    <td class="col-rank"><strong>29</strong></td>
+                                    <td class="col-player"><strong>Robert Oda</strong></td>
+                                    <td class="col-value">$61,002.17</td>
+                                    <td class="col-gain negative hide-sm">-$38,997.83</td>
+                                    <td class="col-return negative">-39.00%</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
 
-                    <!-- Table Footer Note -->
+                    <!-- Table Footer Note & Toggle -->
                     <div class="sim-board-footer">
-                        <span>Starting Capital: $100,000.00 USD</span>
-                        <span>Audited Weekly &middot; MarketWatch Simulation Engine</span>
+                        <button type="button" class="sim-expand-btn" id="sim-toggle-roster-btn">View All 29 Standings &darr;</button>
+                        <span>Audited Weekly &middot; MarketWatch Real-Time Engine</span>
                     </div>
                 </div>
 
@@ -3085,7 +3358,7 @@
             }, 6000); // 6 seconds per quote
         }
 
-        // MarketWatch Simulation CSV Loader & Term Week Calculator
+        // MarketWatch Simulation CSV Loader, Week Calculator & Roster Toggle
         (function() {
             // 1. Calculate Term Week based on term dates (Sept 29 - Dec 4, 2026)
             const termStart = new Date(2026, 8, 29); // Sept 29, 2026
@@ -3107,14 +3380,41 @@
                 weekTagEl.textContent = weekText;
             }
 
-            // 2. Fetch and Parse rankings.csv or download.csv (auto-cache-busting)
+            // 2. Expand/Collapse Roster Logic
+            let isRosterExpanded = false;
+            let currentTotalRows = 29;
+            const toggleRosterBtn = document.getElementById('sim-toggle-roster-btn');
+            const rosterCountEl = document.getElementById('sim-roster-count');
+
+            function updateToggleBtn() {
+                if (!toggleRosterBtn) return;
+                toggleRosterBtn.textContent = isRosterExpanded 
+                    ? 'Show Top 10 Only ↑' 
+                    : `View All ${currentTotalRows} Standings ↓`;
+            }
+
+            if (toggleRosterBtn) {
+                toggleRosterBtn.addEventListener('click', function() {
+                    isRosterExpanded = !isRosterExpanded;
+                    const extraRows = document.querySelectorAll('.sim-row-extra');
+                    extraRows.forEach(row => {
+                        if (isRosterExpanded) {
+                            row.classList.add('is-visible');
+                        } else {
+                            row.classList.remove('is-visible');
+                        }
+                    });
+                    updateToggleBtn();
+                });
+            }
+
+            // 3. Fetch and Parse rankings.csv (auto-cache-busting)
             async function getCSVData() {
                 const urls = [
-                    './download (1).csv?t=' + Date.now(),
-                    './download%20(1).csv?t=' + Date.now(),
-                    './download.csv?t=' + Date.now(),
                     './rankings.csv?t=' + Date.now(),
-                    './Rankings - FMA Fall 2026 Investment Game .csv?t=' + Date.now()
+                    './download.csv?t=' + Date.now(),
+                    './download (1).csv?t=' + Date.now(),
+                    './download%20(1).csv?t=' + Date.now()
                 ];
                 for (let u of urls) {
                     try {
@@ -3133,136 +3433,143 @@
                 const lines = csvText.trim().split(/\r?\n/);
                 if (lines.length < 2) return;
 
-                    // Parse header row
-                    const headers = lines[0].split(',').map(h => h.trim().toLowerCase().replace(/["']/g, ''));
-                    const playerIdx = headers.findIndex(h => h.includes('player') || h.includes('user') || h.includes('name'));
-                    const valueIdx = headers.findIndex(h => h.includes('value') || h.includes('worth') || h.includes('portfolio') || h.includes('total'));
-                    const returnIdx = headers.findIndex(h => h.includes('return') || h.includes('gain') || h.includes('profit') || h.includes('%'));
+                // Parse header row
+                const headers = lines[0].split(',').map(h => h.trim().toLowerCase().replace(/["']/g, ''));
+                const playerIdx = headers.findIndex(h => h.includes('name') || h.includes('player') || h.includes('user'));
+                const valueIdx = headers.findIndex(h => h.includes('worth') || h.includes('value') || h.includes('portfolio'));
+                const returnIdx = headers.findIndex(h => h.includes('return') || h.includes('gain') || h.includes('profit'));
 
-                    if (playerIdx === -1) return;
+                if (playerIdx === -1 || valueIdx === -1) return;
 
-                    // Parse all data rows from CSV
-                    const dataRows = [];
-                    for (let i = 1; i < lines.length && dataRows.length < 25; i++) {
-                        const line = lines[i].trim();
-                        if (!line) continue;
-                        
-                        const parts = [];
-                        let inQuotes = false;
-                        let cur = '';
-                        for (let ch of line) {
-                            if (ch === '"') inQuotes = !inQuotes;
-                            else if (ch === ',' && !inQuotes) {
-                                parts.push(cur.trim().replace(/^"|"$/g, ''));
-                                cur = '';
-                            } else {
-                                cur += ch;
-                            }
+                // Parse ranked rows
+                const dataRows = [];
+                for (let i = 1; i < lines.length; i++) {
+                    const line = lines[i].trim();
+                    if (!line) continue;
+
+                    const parts = [];
+                    let inQuotes = false;
+                    let cur = '';
+                    for (let ch of line) {
+                        if (ch === '"') inQuotes = !inQuotes;
+                        else if (ch === ',' && !inQuotes) {
+                            parts.push(cur.trim().replace(/^"|"$/g, ''));
+                            cur = '';
+                        } else {
+                            cur += ch;
                         }
-                        parts.push(cur.trim().replace(/^"|"$/g, ''));
+                    }
+                    parts.push(cur.trim().replace(/^"|"$/g, ''));
 
-                        const player = parts[playerIdx] || '';
-                        const value = valueIdx !== -1 ? (parts[valueIdx] || '') : '';
-                        const ret = returnIdx !== -1 ? (parts[returnIdx] || '') : '';
+                    const place = parts[0] ? parts[0].trim() : '';
+                    const player = parts[playerIdx] || '';
+                    const value = parts[valueIdx] || '';
+                    const ret = returnIdx !== -1 ? (parts[returnIdx] || '') : '';
 
-                        if (player && parts[0] !== 'N/A' && !parts[0].toLowerCase().includes('place')) {
-                            dataRows.push({ player, value, ret });
+                    // Exclude non-ranked rows (e.g. N/A or spectators with 0 trades and $100k)
+                    if (player && place !== 'N/A' && !place.toLowerCase().includes('place')) {
+                        dataRows.push({ place, player, value, ret });
+                    }
+                }
+
+                if (dataRows.length === 0) return;
+
+                currentTotalRows = dataRows.length;
+                if (rosterCountEl) {
+                    rosterCountEl.textContent = `${currentTotalRows} Active Managers`;
+                }
+                updateToggleBtn();
+
+                const tableBody = document.getElementById('sim-table-body');
+
+                // Update Executive Triptych Cards and Table Rows
+                dataRows.forEach((row, idx) => {
+                    const rankNum = idx + 1;
+                    const rawNum = parseFloat(row.value.replace(/[^0-9.-]/g, ''));
+                    let formattedVal = row.value;
+                    let netGainStr = '';
+                    let isGainNeg = false;
+
+                    if (!isNaN(rawNum)) {
+                        formattedVal = '$' + rawNum.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                        const gainNum = rawNum - 100000;
+                        isGainNeg = gainNum < 0;
+                        netGainStr = (gainNum >= 0 ? '+$' : '-$') + Math.abs(gainNum).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                    }
+
+                    // Format return % vs $100K virtual capital
+                    let retVal = '';
+                    let isRetNeg = false;
+                    if (!isNaN(rawNum)) {
+                        const pctNum = ((rawNum - 100000) / 100000) * 100;
+                        isRetNeg = pctNum < 0;
+                        retVal = (pctNum >= 0 ? '+' : '') + pctNum.toFixed(2) + '%';
+                    } else if (row.ret && row.ret.includes('%')) {
+                        retVal = row.ret.trim();
+                        isRetNeg = retVal.startsWith('-');
+                    }
+
+                    // 1. Update Executive Triptych (Ranks 1, 2, 3)
+                    if (rankNum <= 3) {
+                        const card = document.querySelector(`.podium-card[data-podium-card="${rankNum}"]`);
+                        if (card) {
+                            const pName = card.querySelector('[data-field="player"]');
+                            const pVal = card.querySelector('[data-field="value"]');
+                            const pGain = card.querySelector('[data-field="gain"]');
+                            const pRet = card.querySelector('[data-field="return"]');
+
+                            if (pName && row.player) pName.textContent = row.player;
+                            if (pVal && formattedVal) pVal.textContent = formattedVal;
+                            if (pGain && netGainStr) {
+                                pGain.textContent = netGainStr;
+                                pGain.className = 'podium-metric-val ' + (isGainNeg ? 'negative' : 'positive');
+                            }
+                            if (pRet && retVal) {
+                                pRet.textContent = retVal;
+                                pRet.className = 'podium-metric-val ' + (isRetNeg ? 'negative' : 'positive');
+                            }
                         }
                     }
 
-                    const tableBody = document.getElementById('sim-table-body');
+                    // 2. Update or Insert Standings Table Row
+                    const rowEl = document.querySelector(`tr[data-table-row="${rankNum}"]`);
+                    const rankPadded = rankNum < 10 ? '0' + rankNum : rankNum;
 
-                    // Update Executive Podium Cards and Table Rows
-                    dataRows.forEach((row, idx) => {
-                        const rankNum = idx + 1;
+                    if (rowEl) {
+                        const nameEl = rowEl.querySelector('.col-player strong');
+                        const valEl = rowEl.querySelector('.col-value');
+                        const gainEl = rowEl.querySelector('.col-gain');
+                        const retEl = rowEl.querySelector('.col-return');
 
-                        // Calculate formatted portfolio value and net gain vs $100K starting capital
-                        const rawNum = parseFloat(row.value.replace(/[^0-9.-]/g, ''));
-                        let formattedVal = row.value;
-                        let netGainStr = '';
-                        let isGainNeg = false;
-
-                        if (!isNaN(rawNum)) {
-                            formattedVal = '$' + rawNum.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-                            const gainNum = rawNum - 100000;
-                            isGainNeg = gainNum < 0;
-                            netGainStr = (gainNum >= 0 ? '+$' : '-$') + Math.abs(gainNum).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                        if (nameEl && row.player) nameEl.textContent = row.player;
+                        if (valEl && formattedVal) valEl.textContent = formattedVal;
+                        if (gainEl && netGainStr) {
+                            gainEl.textContent = netGainStr;
+                            gainEl.className = 'col-gain hide-sm ' + (isGainNeg ? 'negative' : 'positive');
                         }
-
-                        // Format return %: if CSV doesn't provide a % return, calculate it vs $100K starting capital
-                        let retVal = '';
-                        let isRetNeg = false;
-                        if (row.ret && row.ret.includes('%')) {
-                            retVal = row.ret.trim();
-                            isRetNeg = retVal.startsWith('-');
-                            if (!retVal.startsWith('+') && !isRetNeg) {
-                                const num = parseFloat(retVal);
-                                if (!isNaN(num) && num > 0) retVal = '+' + retVal;
-                            }
-                        } else if (!isNaN(rawNum)) {
-                            const pctNum = ((rawNum - 100000) / 100000) * 100;
-                            isRetNeg = pctNum < 0;
-                            retVal = (pctNum >= 0 ? '+' : '') + pctNum.toFixed(2) + '%';
+                        if (retEl && retVal) {
+                            retEl.textContent = retVal;
+                            retEl.className = 'col-return ' + (isRetNeg ? 'negative' : 'positive');
                         }
-
-                        // 1. Update Architectural Podium Tier (Ranks 1 to 3)
-                        if (rankNum <= 3) {
-                            const card = document.querySelector(`.podium-card[data-podium-card="${rankNum}"]`);
-                            if (card) {
-                                const pName = card.querySelector('[data-field="player"]');
-                                const pVal = card.querySelector('[data-field="value"]');
-                                const pGain = card.querySelector('[data-field="gain"]');
-                                const pRet = card.querySelector('[data-field="return"]');
-
-                                if (pName && row.player) pName.textContent = row.player;
-                                if (pVal && formattedVal) pVal.textContent = formattedVal;
-                                if (pGain && netGainStr) {
-                                    pGain.textContent = netGainStr;
-                                    pGain.className = 'podium-gain ' + (isGainNeg ? 'negative' : 'positive');
-                                }
-                                if (pRet && retVal) {
-                                    pRet.textContent = retVal;
-                                    pRet.className = 'podium-ret ' + (isRetNeg ? 'negative' : 'positive');
-                                }
-                            }
+                    } else if (tableBody) {
+                        const tr = document.createElement('tr');
+                        tr.setAttribute('data-table-row', rankNum);
+                        if (rankNum > 10) {
+                            tr.className = isRosterExpanded ? 'sim-row-extra is-visible' : 'sim-row-extra';
                         }
-
-                        // 2. Update or Insert Standings Table Rows
-                        const rowEl = document.querySelector(`tr[data-table-row="${rankNum}"]`);
-                        if (rowEl) {
-                            const nameEl = rowEl.querySelector('.col-player strong');
-                            const valEl = rowEl.querySelector('.col-value');
-                            const gainEl = rowEl.querySelector('.col-gain');
-                            const retEl = rowEl.querySelector('.col-return');
-
-                            if (nameEl && row.player) nameEl.textContent = row.player;
-                            if (valEl && formattedVal) valEl.textContent = formattedVal;
-                            if (gainEl && netGainStr) {
-                                gainEl.textContent = netGainStr;
-                                gainEl.className = 'col-gain hide-sm ' + (isGainNeg ? 'negative' : 'positive');
-                            }
-                            if (retEl && retVal) {
-                                retEl.textContent = retVal;
-                                retEl.className = 'col-return ' + (isRetNeg ? 'negative' : 'positive');
-                            }
-                        } else if (tableBody) {
-                            const tr = document.createElement('tr');
-                            tr.setAttribute('data-table-row', rankNum);
-                            const rankPadded = rankNum < 10 ? '0' + rankNum : rankNum;
-                            tr.innerHTML = `
-                                <td class="col-rank"><strong>${rankPadded}</strong></td>
-                                <td class="col-player"><strong>${row.player}</strong></td>
-                                <td class="col-value">${formattedVal}</td>
-                                <td class="col-gain hide-sm ${isGainNeg ? 'negative' : 'positive'}">${netGainStr}</td>
-                                <td class="col-return ${isRetNeg ? 'negative' : 'positive'}">${retVal}</td>
-                            `;
-                            tableBody.appendChild(tr);
-                        }
-                    });
-                })
-                .catch(() => {
-                    // Graceful fallback to initial HTML values
+                        tr.innerHTML = `
+                            <td class="col-rank"><strong>${rankPadded}</strong></td>
+                            <td class="col-player"><strong>${row.player}</strong></td>
+                            <td class="col-value">${formattedVal}</td>
+                            <td class="col-gain hide-sm ${isGainNeg ? 'negative' : 'positive'}">${netGainStr}</td>
+                            <td class="col-return ${isRetNeg ? 'negative' : 'positive'}">${retVal}</td>
+                        `;
+                        tableBody.appendChild(tr);
+                    }
                 });
+            }).catch(() => {
+                // Graceful fallback to static HTML
+            });
         })();
     </script>
 
